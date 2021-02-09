@@ -1,1 +1,2 @@
-# JavaScript
+＃JavaScript
+主要是一些平时练习的JavaScript小演示，后续会继续深入学习并且不断更新！
