@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>给图片加边框</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<style type="text/css">
+    body {
+        text-align: center;
+    }
+
+    div#id-border {
+        width: 128px;
+        height: 128px;
+        border: 0px solid black;
+        margin: 32px auto;
+        padding: 8px;
+    }
+</style>
+<body>
+<div id="id-border">
+    <select id="sel-color" onchange="on_color(this.id);">
+        <option value="none" selected>请选择颜色</option>
+        <option value="black">black</option>
+        <option value="red">red</option>
+        <option value="blue">blue</option>
+    </select>
+    <select id="sel-width" onchange="on_width(this.id);">
+        <option value="" selected>请选择厚度</option>
+        <option value="0">0</option>
+        <option value="10">1</option>
+        <option value="20">2</option>
+        <option value="30">3</option>
+    </select>
+    <img src="images/js-border.jpg" id="id_img">
+</div>
+<script type="text/javascript">
+    function on_color(thisid){
+        var e = document.getElementById(thisid);
+        var color = e.value;
+        var i = document.getElementById('sel-width');
+        var width = i.value;
+        console.log(color,width)
+        setImageBorder(width,color)
+    }
+    function on_width(thisid){
+        var e = document.getElementById('sel-color');
+        var color = e.value;
+        var i = document.getElementById(thisid);
+        var width = i.value;
+        console.log(color,width)
+        setImageBorder(width,color)
+    }
+    function setImageBorder(width, color) {
+        var e = document.getElementById("id_img");
+        if(width == "0" || color == "none") {
+            e.style.border = "";
+        } else {
+            e.style.border = width + 'px solid ' + color;
+        }
+    }
+</script>
+</body>
+</html>

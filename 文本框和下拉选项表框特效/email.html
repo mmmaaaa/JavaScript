@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证邮件格式</title>
+</head>
+<body>
+<div>
+    请输入email<input type="text" id="id_input" onblur="yz(this.id);">
+    验证结果<input type="text" value="" id="id_result" readonly>
+</div>
+<script>
+    function yz(thisid){
+    var e = document.getElementById(thisid);
+    var i = document.getElementById("id_result");
+    var email = e.value;
+    console.log(email);
+    var regexemail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+    if (regexemail.test(email)){
+        i.value = "Email校验通过"
+    }else {
+        i.value = "Email校验失败"
+    }
+    }
+</script>
+</body>
+</html>

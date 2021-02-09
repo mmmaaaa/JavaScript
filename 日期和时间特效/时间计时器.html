@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时间计时器</title>
+</head>
+<body>
+<div>
+    <span id="id_start"></span>
+    <input type="button" id="id_bt1" value="开始计时" onclick="on_start(this.id);">
+    <input type="button" id="" value="暂停计时" onclick="on_stop();">
+</div>
+<script>
+        let mytimer = null;
+        let ihours = 0;
+        let iminutes = 0;
+        let iseconds = 0;
+        let strhours = "00";
+        let strminutes = "00";
+        let strseconds = "00";
+    window.onload = function (){
+        let e = document.getElementById("id_start");
+        e.innerText = `${strhours}:${strminutes}:${strseconds}`;
+    }
+    function on_start(thisid){
+        mytimer = window.setInterval(function (){
+        iseconds++;
+        if (iseconds == 60){
+            iminutes++;
+            if (iminutes == 60){
+                ihours++;
+            }
+        }else {
+            strseconds = iseconds.toString();
+            if (strseconds.length == 1){
+                strseconds = "0" + strseconds;
+            }
+            strminutes = iminutes.toString();
+            if (strminutes.length == 1){
+                strminutes = "0" + strminutes;
+            }
+            strhours = ihours.toString();
+            if (strhours.length == 1){
+                strhours = "0" + strhours;
+            }
+        }
+        document.getElementById("id_start").innerText = `${strhours}:${strminutes}:${strseconds}`
+        },1000)
+    }
+    function on_stop(){
+        clearInterval(mytimer);
+    }
+</script>
+</body>
+</html>

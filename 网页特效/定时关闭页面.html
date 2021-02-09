@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时关闭页面</title>
+</head>
+<body>
+<div>
+    <input type="text" id="id-text" value=""/>
+    <input type="button" value="定时关闭页面" onclick="Sclose('id-text');"/>
+</div>
+</body>
+<script type="text/javascript">
+    var timer = null;
+    var win = null;
+    function Sclose(id) {
+        var t = document.getElementById(id).value;
+        var timeClose = t || -1;
+        if (timeClose != -1){
+            timer = setInterval(function (){
+                win = window.open('','_self','');
+                timeClose --;
+                if (timeClose == 0){
+                    win.close();
+                    timer.clearTimeout();
+                }
+            },1000);
+        }
+    }
+</script>
+</html>

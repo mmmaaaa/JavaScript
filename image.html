@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片特效</title>
+    <script type="text/javascript" src="js/ch06-js-browser.js"></script>
+</head>
+<body>
+<p>
+    <img src="images/js.jpg" id="image1"><br>
+    <input type="button" value="放大" onclick="toscale(1);"/>
+    <input type="button" value="缩小" onclick="toscale(-1);">
+</p>
+<script type="text/javascript">
+    var x = 1;
+    var y = 1;
+    //图片放大缩小
+    function toscale(i){
+        var img = document.getElementById("image1");
+        if (i>0){
+            x += 0.1;
+            y += 0.1;
+        }else {
+            x -= 0.1;
+            y -= 0.1;
+        }
+        var bow = getBrowser();
+        if (bow = "FF"){
+            img.style.transform = 'scale('+x+','+y+')';
+        }else {
+            img.style.webkitTransform = 'scale('+x+','+y+')';
+        }
+    }
+</script>
+
+</body>
+</html>

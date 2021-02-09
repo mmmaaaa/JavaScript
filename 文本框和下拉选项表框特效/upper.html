@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>转换文本框的大小写</title>
+</head>
+<body>
+<div>
+    全部字母大写<input type="text" id="id_all" onblur="on_all(this.id);">
+    首字母大写<input type="text" id="id_first" onblur="on_first(this.id);">
+</div>
+<script>
+    function on_all(thisid){
+        var e = document.getElementById(thisid);
+        var i = e.value;
+        var newi = i.toUpperCase();
+        e.value = newi;
+    }
+    function on_first(thisid){
+        var e = document.getElementById(thisid);
+        var i = e.value;
+        var firsti = i.charAt(0).toUpperCase();
+        var newi = firsti + i.substr(1,i.length);
+         e.value = newi;
+    }
+</script>
+</body>
+</html>

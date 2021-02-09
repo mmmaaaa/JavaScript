@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取焦点后自动清除内容</title>
+</head>
+<body>
+<div>
+    <input type="text" id="id_clear" value="自动清除内容" onfocus="on_clear(this.id)">
+</div>
+<script>
+    function on_clear(thisid){
+        var e = document.getElementById(thisid);
+        e.value = "";
+    }
+</script>
+</body>
+</html>

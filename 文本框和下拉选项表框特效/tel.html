@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证电话号码格式</title>
+</head>
+<body>
+<div>
+    请输入<input type="text" id="id_tel" onblur="on_tel(this.id);">
+    输出<input type="text" id="id_result" readonly>
+</div>
+<script>
+    function on_tel(thisid){
+        var vresult = document.getElementById("id_result");
+        var e = document.getElementById(thisid);
+        var value = e.value;
+        var regextel = /^[(0-9)-]+$/;
+        var regexmobile = /^1[3578]\d{9}$/;
+        var regextel1 = /^0\d{2}-\d{8}$|^0\d{3}-\d{7}$/;
+        var regextel2 = /^\(0\d{2}\)\d{8}$|^\(0\d{3}\)\d{7}$/;
+        if (regextel.test(value)){
+            if (regexmobile.test(value)){
+                vresult.value = "正确的手机号码格式";
+            }else if (regextel1.test(value)){
+                vresult.value = "正确的固定电话格式";
+            }else if (regextel2.test(value)){
+                vresult.value = "正确的固定电话号码格式";
+            }else
+                vresult.value = "格式不正确";
+            }else {
+            vresult.value = "格式不正确";
+        }
+
+    }
+</script>
+</body>
+</html>

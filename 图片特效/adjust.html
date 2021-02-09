@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片自适应大小</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<style type="text/css">
+    body {
+        text-align: center;
+    }
+
+    div#adjust1 {
+        width: 150px;
+        height: 150px;
+        border: 1px solid black;
+        margin: 8px auto;
+        padding: 0px;
+    }
+
+    div#adjust2 {
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+        margin: 8px auto;
+        padding: 0px;
+    }
+</style>
+<body>
+<img src="images/js-adjust.jpg" alt="自适应图片">
+<div id="adjust1">
+    <img src="images/js-adjust.jpg" alt="自适应图片" id="id_img1">
+</div>
+<div id="adjust2">
+    <img src="images/js-adjust.jpg" alt="自适应图片" id="id_img2">
+</div>
+<script type="text/javascript">
+    window.onload = function (){
+        var img1 = document.getElementById("id_img1");
+        adjustimg(img1);
+        var img2 = document.getElementById("id_img2");
+        adjustimg(img2);
+    }
+    function adjustimg(img){
+        var div = img.parentNode;
+        var w = div.offsetWidth;
+        var h = div.offsetHeight;
+        img.width = w-2 ;
+        img.height = h-2 ;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态加载图片</title>
+</head>
+<body>
+<!--<input type="button" value="动态加载图片" onclick="loading();">-->
+<img lazy_src="images/js-dyn-load.jpg" src="" alt="图片未加载" id="id-img">
+</body>
+<script type="text/javascript">
+    var timer = null;
+    window.onload = function (ev){
+        timer = setTimeout(loading,3000)
+    }
+    function loading(){
+        var img = document.getElementById("id-img");
+        img.src = img.attributes['lazy_src'].value;
+        timer = null;
+    }
+</script>
+</html>

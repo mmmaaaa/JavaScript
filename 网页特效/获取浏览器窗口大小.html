@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取浏览器窗口大小</title>
+</head>
+<body>
+<div>
+    <span id="id-span"></span>
+</div>
+</body>
+<script type="text/javascript">
+    window.onload = function (){
+        let s_info = `浏览器窗口尺寸:<br>`;
+        let size = getWindowoutSize();
+        s_info += `outwidth:${size.width}/outheight:${size.height}<br>`;
+        let i_size = getWindowinSize();
+        s_info += `inwidth:${i_size.width}/inheight:${i_size.height}<br>`;
+        document.getElementById("id-span").innerHTML = s_info;
+    }
+    function getWindowoutSize(){
+        return{
+            width:window.outerWidth,
+            height:window.outerHeight
+        };
+    }
+    function getWindowinSize(){
+        return{
+            width: window.innerWidth || document.documentElement.clientWidth,
+            height: window.innerHeight || document.documentElement.clientHeight
+        };
+    }
+</script>
+</html>

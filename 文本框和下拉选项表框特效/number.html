@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证是否为数字模式</title>
+</head>
+<body>
+<div>
+    请输入数值:<input type="text" id="id_number" onblur="on_number(this.id);">
+    验证结果:<input type="text" id="id_yz" readonly>
+</div>
+<script>
+    function on_number(thisid){
+        var e = document.getElementById(thisid);
+        var i = document.getElementById("id_yz");
+        var value = e.value;
+        var regaxnum = /\b[0-9]+\b/;
+        if (regaxnum.test(value)){
+            i.value = "验证通过";
+        }else {
+            i.value = "验证失败";
+        }
+    }
+</script>
+</body>
+</html>

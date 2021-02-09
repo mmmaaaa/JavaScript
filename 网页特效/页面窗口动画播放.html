@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面窗口动画播放</title>
+</head>
+<body>
+<div>
+    <input type="text" id="id-text" value=""/>
+    <input type="button" value="放大窗口" onclick="ani_large('id-text');"/>
+    <input type="button" value="缩小窗口" onclick="ani_small('id-text');"/>
+</div>
+</body>
+<script type="text/javascript">
+    var timerlarge = null,timesmall = null;
+    var owidth = 0, oheight = 0;
+    var scrwidth = screen.availWidth;
+    var scrheight = screen.availHeight;
+    function ani_large(thisid){
+        var size = document.getElementById(thisid).value;
+        var win = window.open('open.html',"","_blank","width=350,height=300");
+        win.moveTo(0,0);
+        timerlarge = setInterval(function (){
+            win.resizeBy(size,size);
+            owidth = win.outerWidth;
+            oheight = win.outerHeight;
+            win.location.reload();
+            if (owidth >= scrwidth || oheight >= scrheight){
+                clearInterval(timerlarge);
+                timerlarge = null;
+            }
+        },1000)
+    }
+    function ani_small(thisid){
+        var size = document.getElementById(thisid).value;
+        var win = window.open("open.html", "", "_blank", "width=600,height=450");
+        win.moveTo(0,0);
+        timesmall = setInterval(function (){
+            win.resizeBy(-size,-size);
+            owidth = win.outerWidth;
+            oheight = win.outerHeight;
+            win.location = win.location;
+            if (owidth < 10 || oheight < 10){
+                clearInterval(timesmall);
+                timesmall = null;
+            }
+        },1000);
+    }
+</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示局部照片</title>
+</head>
+<style type="text/css">
+    body {
+        text-align: center;
+    }
+
+    div#id-center {
+        width: 320px;
+        height: auto;
+        border: 0px solid black;
+        margin: 8px auto;
+        padding: 4px;
+    }
+
+    div#id-img {
+        background: url('images/js-part.jpg') 0 0 no-repeat;
+        width: 296px;
+        height: 296px;
+        margin: 16px auto;
+    }
+</style>
+<body>
+<div id="id-center">
+    <input type="button" value="切换显示局部图片" onclick="showimage();">
+</div>
+<div id="id-img">
+</div>
+</body>
+<script type="text/javascript">
+    var arr = [[0,0],[-150,0],[-150,-150],[0,-150]];
+    var index = 0;
+    function showimage(){
+        var img = document.getElementById("id-img");
+        index++;
+        if (index == 4){
+            index = 0;}
+        var x = arr[index][0] + 'px';
+        var y = arr[index][1] + 'px';
+        img.style.backgroundPosition = x +' '+ y;
+    }
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态添加下拉选项</title>
+</head>
+<body>
+<div>
+    <select id="seladd">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <input type="text" id="text1" placeholder="value">
+    <input type="text" id="text2" placeholder="text"><br>
+    <input type="button" id="bt1" onclick="addsel();" value="添加">
+</div>
+<script>
+    function addsel(){
+        var e1 = document.getElementById("seladd");
+        var e2 = document.getElementById("text1");
+        var e3 = document.getElementById("text2");
+        var value = e2.value;
+        var text = e3.value;
+        console.log(value,text);
+        e1.options.add(new Option(value,text));
+    }
+</script>
+</body>
+</html>

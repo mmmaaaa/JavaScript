@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二级联动下拉菜单</title>
+</head>
+<body>
+<form name="form1">
+    <select id="sel1" onchange="sel_country();">
+        <option value="0">请选择大洲</option>
+        <option value="亚洲">亚洲</option>
+        <option value="欧洲">欧洲</option>
+        <option value="美洲">美洲</option>
+    </select>
+    <br>
+    <select id="sel2" onchange="sel_city();">
+        <option value="0">请选择国家</option>
+    </select><br>
+    <select id="sel3">
+        <option value="0">请选择城市</option>
+    </select>
+</form>
+</body>
+<script>
+    var country = [
+        ["中国","日本","韩国"],
+        ["英国","德国","法国"],
+        ["美国","巴西","阿根廷"]
+    ];
+    var city = [
+        [["北京","上海","广州"],["东京","大阪","名古屋"],["首尔","仁川","济州"]],
+        [["伦敦","曼彻斯特","利物浦"],["柏林","慕尼黑","法兰克福"],["巴黎","里尔","摩纳哥"]],
+        [["华盛顿","纽约","洛杉矶"],["里约热内卢","圣保罗","巴西利亚"],["布宜诺斯埃利斯","沙尔多瓦","罗莎里奥"]]
+
+    ]
+    function sel_country(){
+        var e = document.getElementById("sel1");
+        var sel_con = document.getElementById("sel2");
+        var on_country = country[e.selectedIndex - 1];
+        var sel_city = document.getElementById("sel3");
+        sel_con.options.length = 1;
+        sel_city.options.length = 1;
+        for (var  i = 0;i<on_country.length;i++){
+            //sel_con[i+1] = new Option(on_country[i],on_country[i]);
+            sel_con.options.add(new Option(on_country[i],on_country[i]));
+        }
+    }
+    function sel_city(){
+        var e = document.getElementById("sel1");
+        var sel_con = document.getElementById("sel2");
+        var sel_city = document.getElementById("sel3");
+        var arr = city[e.selectedIndex-1][sel_con.selectedIndex-1];
+        console.log(arr)
+        sel_city.options.length = 1;
+        for (var i = 0;i<arr.length;i++){
+            sel_city.options.add(new Option(arr[i]),arr[i]);
+        }
+    }
+</script>
+</html>

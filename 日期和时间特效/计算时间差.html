@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算时间差</title>
+</head>
+<body>
+<div>
+    <label>第一个时间:<input type="text" id="text1" value="2020-12-11 10:34:30"></label>
+    <label>第二个时间:<input type="text" id="text2" value="2021-21-11 10:45:30"></label>
+    <span id="span1"></span>
+    <input type="button" id="bt1" value="计算" onclick="js();">
+</div>
+<script>
+    function js(){
+    let firsttime = document.getElementById("text1").value;
+    let secondtime = document.getElementById("text2").value;
+    let t1 = parseTime(firsttime);
+    let t2 = parseTime(secondtime);console.log(t1,t2)
+    let span = t2.getTime()-t1.getTime();
+    console.log(span)
+    span = Math.abs(span/1000);
+    let span1 = parsedate(span);
+    document.getElementById("span1").innerText = `相差的时间为${span1}`
+    }
+    function parseTime(day){
+        let date = day.split(' ')[0];
+        let darr = date.split('-');
+        let time = day.split(' ')[1];
+        console.log(计算时间差)
+        let timer = 计算时间差.split(':');
+        let y = parseInt(darr[0]);
+        let m = parseInt(darr[1]);
+        let d = parseInt(darr[2]);
+        let h = parseInt(timer[0]);
+        let m2 = parseInt(timer[1]);
+        let s = parseInt(timer[2]);console.log(y,m,d,h,m2,s)
+        return new Date(y,m,d,h,m2,s);
+
+    }
+    function parsedate(value){
+        let seconds = value % 60;
+        let minutes = Math.floor(value/60);
+        let hours = Math.floor(minutes/60);
+        let day = Math.floor(hours/24);
+        let s = seconds;
+        let m = minutes - hours*60;
+        let h = hours-day*24;
+        let d = day;
+        return `${day}天${h}小时${m}分钟${s}秒`;
+    }
+</script>
+</body>
+</html>

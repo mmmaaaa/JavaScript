@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>隐藏页面滚动条</title>
+</head>
+<body>
+<div id="id-div">
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    <input type="radio" id="sc1" name="1" value="1" onclick="sCheck(this.id);"/>允许页面滚动条
+    <input type="radio" id="sc2" name="1" value="0" onclick="sCheck(this.id);"/>隐藏页面滚动条
+</div>
+</body>
+<script>
+    window.onload = function (){
+        document.getElementById("sc1").checked = true;
+    }
+    function sCheck(thisid){
+        let c = document.getElementById(thisid).value;
+        switch (c){
+            case "0":
+                document.body.style.overflow = "hidden";
+                break;
+            case "1":
+                document.body.style.overflow = "auto";
+                break;
+        }
+    }
+</script>
+</html>

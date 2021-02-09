@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子窗口</title>
+</head>
+<body>
+<div>
+    <label>传回数据</label><input type="text" id="text2">
+    <input type="button" value="返回数据" onclick="returnData();">
+<span id="span2"></span>
+</div>
+<script>
+    var currurl = window.location.href.split('?')[0];
+    document.getElementById("span2").innerHTML += "CURRURL:"+currurl+"<br>";
+    var fatherurl = window.opener.location.href.split('?')[0];
+    document.getElementById("span2").innerHTML += "FATHERURL"+fatherurl;
+    window.onload = function (){
+        document.getElementById("text2").value = window.opener.document.getElementById("text1").value;
+    }
+    function returnData(){
+        window.opener.document.getElementById("text1").value = document.getElementById("text2").value;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- 添加文档头部内容 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="zh-cn"/>
+    <meta name="author" content="king">
+    <meta name="revised" content="king,01/18/2019">
+    <meta name="generator" content="WebStorm 2017.2.4">
+    <meta name="description" content="JavaScript Total Samples">
+    <meta name="keywords" content="JavaScript,ECMAScript">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>JavaScript 全程实例</title>
+</head>
+<style type="text/css">
+    body {
+        text-align: center;
+    }
+
+    div#id-div-center {
+        position: relative;
+        width: 320px;
+        height: auto;
+        border: 0px solid black;
+        margin: 32px auto;
+        padding: 2px;
+        font: normal 14px/1.2em "Microsoft Yahei", arial, sans-serif;
+    }
+
+    div#id-div-center input[type='text'] {
+        width: 64px;
+        text-align: center;
+    }
+</style>
+<body>
+<!-- 添加文档主体内容 -->
+<header>
+    <nav>JavaScript 网页特效 - 定时关闭页面</nav>
+</header>
+<hr>
+<!-- 添加文档主体内容 -->
+<div id="id-div-center" style="">
+    设定定时关闭窗口时间:&nbsp;&nbsp;
+    <input type="text" id="id-input-time" value=""/><br><br>
+    <input type="button" id="id-input-close" value="定时关闭页面" onclick="set_time_close('id-input-time');"/>
+</div>
+</body>
+<script type="text/javascript">
+    var timer = null;
+    var win = null;
+
+    /**
+     * set time to close window
+     * @param id
+     */
+    function set_time_close(id) {
+        var t = document.getElementById(id).value;
+        var timeClose = t || -1;
+        if (timeClose != -1) {
+            timer = setTimeout(function () {
+                win = window.open('', '_self', '');
+                win.close();
+                timer.clearTimeout();
+            }, timeClose);
+        }
+    }
+</script>
+</html>

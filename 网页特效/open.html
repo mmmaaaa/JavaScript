@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>最小最大化窗口</title>
+</head>
+<body>
+<div>
+    <input type="button" value="最小化窗口" onclick="window_min();"/><br>
+    <input type="button" value="最大化窗口" onclick="window_max();"/><br>
+    <input type="button" value="关闭窗口" onclick="window_close();"/>
+</div>
+</body>
+<script>
+    let win;
+    function window_min(){
+        win = window.open("child.html","","_blank","width=350,height= 300");
+        win.focus();
+        let w = 1,h = 1;
+        win.resizeTo(w,h);
+    }
+    function window_max(){
+        win = window.open("child.html","","_blank","width = 350,height=300");
+        win.focus();
+        let w = 0,h = 0;
+        w = window.screen.availWidth;
+        h = window.screen.availHeight;
+        win.moveTo(0,0);
+        win.resizeTo(w,h);
+    }
+    function window_close(){
+        win.focus();
+        win.close();
+    }
+</script>
+</html>

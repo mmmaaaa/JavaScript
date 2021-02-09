@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用层模拟确认框</title>
+</head>
+<style>
+    div#id-div{
+        display: none;
+    }
+</style>
+<body>
+<div id="id-div">
+    <p>用层模拟的确认框，请用户测试</p>
+    <p>
+        <input type="button" id="id-ok" value="确认">
+        <input type="button" id="id-cancel" value="取消">
+    </p>
+</div>
+<input type="button" id="id-open" value="弹出确认框">
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        function div_prompt(options) {
+            var e = options.prompt;
+            setCss = function (_this, cssOption) {
+                if (!_this || _this.nodeType == 3 || _this.nodeType === 8 || !_this.style) {
+                    return;
+                }
+                for (var cs in cssOption) {
+                    _this.style[cs] = cssOption[cs];
+                }
+                return _this;
+            };
+            setCss(e, {
+                "position": "absolute",
+                "zIndex": 100,
+                "top": ((document.body.scrollTop || document.documentElement.scrollTop) + window.screen.availHeight / 2 - e.offsetHeight) + "px",
+                "backgroundColor": "#eee"
+            });
+            options.promptOpen.onclick = function () {
+                e.style.display = "block";
+                setCss(e, {
+                    "left": "50%",
+                    "top": "50%",
+                    "marginLeft": -e.offsetWidth / 2 + "px"
+                });
+                options.promptok.onclick = function () {
+                    e.style.display = "none";
+                    if (options.okCallBack) options.okCallBack();
+                };
+                options.promptCancel.onclick = function () {
+                    e.style.display = "none";
+                    if (options.cancelCallBack) options.cancelCallBack();
+                };
+            }
+        }
+            div_prompt({
+                "prompt":document.getElementById("id-div"),
+                "promptOpen":document.getElementById("id-open"),
+                "promptok":document.getElementById("id-ok"),
+                "okCallBack":function (){
+                    alert("确认的回调函数");
+                },
+                "promptCancel":document.getElementById("id-cancel"),
+                "cancelCallBack":function (){
+                    alert("取消的回调函数");
+                }
+            });
+    }
+</script>
+</html>

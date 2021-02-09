@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>同时改变多个DOW样式</title>
+</head>
+<style  type="text/css">
+    .content-small{
+        font-style: italic;
+        font-size: small;
+    }
+    .content-medium{
+        font-style: normal;
+        font-size: medium;
+    }
+    .content-large{
+        font-style: italic;
+        font-size: large;
+    }
+</style>
+<body>
+<div>
+    <p>我想吃午饭</p>
+    <p>我想吃午饭</p>
+    <p>我想吃午饭</p>
+    <input type="button" value="大字体" onclick="changSize(20)">
+    <input type="button" value="正常字体" onclick="changSize(14)">
+    <input type="button" value="小字体" onclick="changSize(8)"><br>
+    <input type="button" value="content-small" onclick="changeStyle('content-small')">
+    <input type="button" value="content-medium" onclick="changeStyle('content-medium')">
+    <input type="button" value="content-large" onclick="changeStyle('content-large')">
+</div>
+</body>
+<script type="text/javascript">
+    function changSize(s){
+        var size = `${s}px`;
+        var ps = document.getElementsByTagName("p");
+        for (let i=0; i<ps.length; i++){
+            ps[i].style.fontSize = size;
+        }
+    }
+    function changeStyle(e){
+        var ps = document.getElementsByTagName("p");
+        for (var j = 0;j<ps.length;j++){
+            ps[j].className = e;
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript控制表单</title>
+</head>
+<body onclick="on_avtive_focus();">
+<form name="form1" method="get">
+    <p>first name<input type="text" name="1" id="1" value="男"/></p>
+    <p>last name<input type="text" name="2" id="2" value="女"/></p>
+    <select id="s">
+        <option value="o">请选择</option>
+        <option value="1">男</option>
+        <option value="2">女</option>
+    </select>
+    <select name="sm">
+        <option value="post">post</option>
+        <option value="get">get</option>
+    </select>
+    <input type="button"  onclick="get_name();" id="on_get_name" value="提交"/>
+    <input type="button" onclick="gm();" value="修改提交方法"/>
+    <input type="button" onclick="on_lock('1');" value="聚焦">
+</form>
+</body>
+<script type="text/javascript">
+    function get_name(){
+        document.getElementById("1").value="女";
+        document.getElementById("2").value="男";
+        var len = document.getElementById("s").options.length;
+        for(let i=0;i<len;i++){
+            document.getElementById("s").options[i].innerText = document.getElementById("s").options[i].value;
+        }
+    }
+    var j,count = 0;
+    var inpu = document.getElementsByTagName("input");
+    for (j=0;j<inpu.length;j++){
+        var er = inpu[j];
+        if(er.type == "text")
+            count++;
+    }
+    function gm(){
+        var fm = document.form1;
+        var gm = form1.sm.value;
+        form1.method = gm;
+        console.log(form1.method);
+    }
+    console.log(count)
+    function on_lock(thisid){
+        document.getElementById(thisid).focus();
+    }
+    function on_avtive_focus(){
+        console.log(document.activeElement.id);
+    }
+        var now = new Date();
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + now.getMonth()).slice(-2);
+        var today = now.getFullYear() + "-" + month + "-" +day;
+        console.log(today);
+</script>
+</html>

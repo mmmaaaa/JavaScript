@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>判断是否为节假日</title>
+</head>
+<body>
+<div>
+    <span id="id_date"></span>
+    <span id="id_holiday"></span>
+</div>
+<script>
+    window.onload = function (){
+        var date = new  Date();
+        var today = document.getElementById("id_date");
+        var holiday = document.getElementById("id_holiday");
+        today.innerText = curdate(date);
+        判断是否为节假日.innerText = getholiday(date);
+    }
+    function curdate(d){
+        var arr=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+        var year = d.getFullYear();
+        var mon = d.getMonth();
+        var date = d.getDate();
+        var day = arr[d.getDay()];
+        return year + "-" + mon + "-" + date + " " + day;
+    }
+    function getholiday(d){
+        var arr=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+        var year = d.getFullYear();
+        var mon = d.getMonth()+1;
+        var date = d.getDate();
+        var day = arr[d.getDay()];
+        var vholiday;
+        if (date == 1){
+            if (mon == 1){
+                vholiday = "元旦节";
+            }else if (mon == 5){
+                vholiday = "劳动节";
+            }else if (mon == 10){
+                vholiday = "国庆节";
+            }
+        }else if (date == 9){
+            if (mon == 12){
+                vholiday = "今天好日子";
+            }
+        }else {
+            if (isweekend(d)){
+                vholiday = "周末";
+            }else {
+                vholiday = "工作日";
+            }
+        }
+        return vholiday;
+    }
+    function isweekend(d){
+        var day = d.getDay();
+        if ((day == 0) ||(day==6)){
+            return true;
+        }else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改浏览器标题</title>
+</head>
+<body>
+<div>
+    <input type="text" id="id-text" value=""/>
+    <input type="button" onclick="changetype('id-text');" value="修改浏览器标题"/>
+</div>
+</body>
+<script type="text/javascript">
+    function changetype(id){
+        var e = document.getElementById(id).value;
+        document.title = e;
+    }
+</script>
+</html>

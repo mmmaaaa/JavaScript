@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设置下拉列表框的值</title>
+</head>
+<body>
+<div>
+    <select name="selset" id="id_selset">
+        <option value="">请选择</option>
+        <option value="red">red</option>
+        <option value="green">green</option>
+        <option value="blue">blue</option>
+    </select>
+    <input type="radio" name="radiocolor" value="red" onclick="selcolor(this.value)" checked>red
+    <input type="radio" name="radiocolor" value="green" onclick="selcolor(this.value)">green
+    <input type="radio" name="radiocolor" value="blue" onclick="selcolor(this.value)">blue
+</div>
+<script>
+    window.onload = function (ev){
+        var e = document.getElementById("id_selset");
+        var i = document.getElementsByName("radiocolor");
+        for (var j = 0;j<i.length;j++){
+            if (i[j].checked){
+                e.value = i[j].value;
+            }
+        }
+    }
+    function selcolor(thisvalue){
+        var e = document.getElementById("id_selset");
+        e.value = thisvalue;
+    }
+</script>
+</body>
+</html>

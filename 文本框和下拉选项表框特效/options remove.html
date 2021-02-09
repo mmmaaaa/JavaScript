@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除下拉选项</title>
+</head>
+<body>
+<div>
+    <select id="selmove">
+        <option value="">请选择</option>
+        <option value="red">red</option>
+        <option value="blue">blue</option>
+        <option value="yellow">yellow</option>
+    </select>
+    <input type="button" id="bt1" value="删除选项" onclick="move1();"/>
+    <input type="button" id="bt2" value="删除全部选项" onclick="move2();"/>
+</div>
+<script>
+    function move1(){
+        var e = document.getElementById("selmove");
+        e.options.remove(e.selectedIndex);
+    }
+    function move2(){
+        var e = document.getElementById("selmove");
+        e.options.length = 0;
+    }
+</script>
+</body>
+</html>

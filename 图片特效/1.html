@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- 添加文档头部内容 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="zh-cn"/>
+    <meta name="author" content="king">
+    <meta name="revised" content="king,01/18/2019">
+    <meta name="generator" content="WebStorm 2017.2.4">
+    <meta name="description" content="JavaScript Total Samples">
+    <meta name="keywords" content="JavaScript,ECMAScript">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>JavaScript 全程实例</title>
+</head>
+<style type="text/css">
+    body {
+        text-align: center;
+    }
+
+    div#id-div-center {
+        width: 320px;
+        height: auto;
+        border: 0px solid black;
+        margin: 8px auto;
+        padding: 4px;
+    }
+
+    div#id-div-img {
+        background: url('images/js-part.jpg') 0 0 no-repeat;
+        width: 296px;
+        height: 296px;
+        margin: 16px auto;
+    }
+</style>
+<body>
+<!-- 添加文档主体内容 -->
+<header>
+    <nav>JavaScript 图片特效 - 显示局部图片</nav>
+</header>
+<hr>
+<!-- 添加文档主体内容 -->
+<div id="id-div-center">
+    <input type="button" value="切换显示局部图片" onclick="showImagePart();"/>
+</div>
+<div id="id-div-img"></div>
+</body>
+<script type="text/javascript">
+    var arr = [[0, 0], [-150, 0], [-150, -150], [0, -150]];
+    var index = 0;
+
+    /**
+     * show image part
+     */
+    function showImagePart() {
+        var img = document.getElementById('id-div-img');
+        index++;
+        if (index == 4)
+            index = 0;
+        var x = arr[index][0] + 'px';
+        var y = arr[index][1] + 'px';
+        img.style.backgroundPosition = x + ' ' + y;
+    }
+</script>
+</html>

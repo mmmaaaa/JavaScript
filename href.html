@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>超链接时间</title>
+</head>
+<body>
+<div>
+    <a name="#">超链接加下划线</a>
+    <a name="#">超链接加下划线</a>
+    <button id="b1" onclick="add_underline();">添加下划线</button><br>
+</div>
+<form name="formLink" id="form1">
+<div><a href="#" id="bt" onclick="put();">按钮式链接</a></div></form>
+<div> <input type="button" id="change" value="修改打开方式" onclick="on_change();"></div>
+<div><input type="button" id="b2" value="超链接失效" onclick="invail();"></div>
+<div><a href="http://baidu.com" onclick="return(on_open())">百度</a></div>
+<div>
+    <a href="#m" id="id_name1">一个链接</a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <a name="m" id="id_m">锚点</a>
+</div>
+<div>
+    <p>点击&nbsp;<a href="#" id="x">x</a>&nbsp;关闭窗口</p>
+</div>
+<div>
+    <a href="javascript:toPageTop();">返回顶部</a>
+</div>
+</body>
+<script type="text/javascript">
+    //添加下划线
+    function add_underline(){
+        var e = document.getElementsByTagName("a");
+        for (var i = 0; i< e.length;i++){
+            e[i].style.textDecoration = 'underline';
+        }
+    }
+    //设置超链接点击事件
+    window.onload = function (){
+        var e = document.getElementById("id_name1");
+        e.onclick = function (){
+            alert('超链接被点击了！');
+            return false;
+        }
+    }
+    //设置关闭窗口链接
+        var e = document.getElementById("x");
+        e.onclick = function (){
+            window.close();
+            return false;
+    }
+    //按钮式链接
+    window.onload = function (){
+            var e = document.getElementById("bt");
+            e.style.fontSize = '16px';
+            e.style.textAlign = 'center';
+            e.style.color = 'white';
+            e.style.padding = '4px 10px';
+            e.style.margin = '3px';
+            e.style.backgroundColor = 'black';
+            e.style.textDecoration = 'none';
+            e.style.borderColor = '#EEEEEE #666 #666 #EEEEEE';
+            e.style.borderStyle = 'solid';
+            e.style.borderWidth = '1px';
+    }
+    //提交表单功能
+    function put(){
+            // document.formLink.submit();
+           var e = document.getElementById("form1");
+           e.submit();
+            console.log("已触发");
+    }
+    //打开链接在新页面
+    function on_change(){
+            var e = document.getElementsByTagName("a");
+            for (var i = 0; i<e.length;i++){
+                e[i].target = "_blank";
+            }
+    }
+    //清除所有超级链接
+    function invail(){
+            var e = document.getElementsByTagName("a");
+            for (var i=0;i<e.length;i++){
+                e[i].onclick = null;
+                e[i].href = "javascript:void(0)";
+            }
+    }
+    //为链接地址新加一个参数
+    function addurlparam(){
+            var e = document.getElementsByTagName("a");
+            for (var i=0;i<e.length;i++){
+                if (e[i].indexOf('?')>0){
+                    e[i]['href']=href + '&tab=2';
+                }else {
+                    e[i]['href']=href + '?page=1'
+                }
+            }
+    }
+    //返回顶部
+    function toPageTop(){
+            if (document.compatMode === "CSS1Compat"){
+                document.documentElement.scrollTop = 0;
+            }else if(document.compatMode === "BackCompat"){
+                document.body.scrollTop = 0;
+            }else {
+                document.documentElement.scrollTop = 0;
+            }
+    }
+    //需要确认的超链接
+    function on_open(){
+            if (confirm('请你确定打开'+'网址吗？')){
+                return true;
+            }else {
+                return false;
+            }
+    }
+</script>
+</html>

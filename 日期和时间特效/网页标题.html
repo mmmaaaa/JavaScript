@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网页标题</title>
+</head>
+<body>
+<div>
+    <span id="span1"></span>
+</div>
+<script>
+    window.onload = function (){
+        let strtitle;
+        let date = new Date();
+        let d = date.getDate();
+        if (d<=10){
+            strtitle = '上旬，请安排好月计划';
+        }else if (d>10&&d<=15){
+            strtitle = '中旬，请合理安排时间';
+        }else {
+            strtitle = '下旬，请抓紧安排时间';
+        }
+        document.title = strtitle;
+        let day = date.toLocaleDateString();
+        document.getElementById("span1").innerText = `今天是：${day}`;
+    }
+
+</script>
+</body>
+</html>

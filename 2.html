@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript控制DOW</title>
+</head>
+<body>
+<p>name:<input name="name" id="id_name" type="text" value="lili"/></p>
+<input type="button" name="name1" id="id_name1" onclick="get_type();" value="获取全部属性"/>
+<div id="div1"><br></div>
+<div id="div2">
+    <p>已经存在的文本段落</p><br>
+</div>
+<div id="div3">
+    <p>文本1</p>
+    <p>文本2</p>
+</div>
+<select id="sl">
+    <option>数学</option>
+    <option>语文</option>
+    <option>英语</option>
+</select>
+<div>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button><br>
+    <button>4</button>
+    <button>5</button>
+    <button>6</button><br>
+    <button>7</button>
+    <button>8</button>
+    <button>9</button><br>
+    <button>#</button>
+    <button>=</button>
+    <button>-</button>
+    <input type="text" name="name6" id="id_name6"/>
+</div>
+<input type="button" name="b1" id="id_b1" value="动态创建文本段落" onclick="on_create();"/>
+<input type="button" name="b2" id="id_b2" value="动态追加文本段落" onclick="on_add();"/>
+<input type="button" name="b3" id="id_b3" value="动态插入文本段落" onclick="on_insert();"/>
+<input type="button" name="b4" id="id_b4" value="删除文本段落" onclick="on_del();"/>
+<input type="button" name="b5" id="id_b5" value="替换文本段落" onclick="on_change();"/>
+<input type="button" name="b6" id="id_b6" value="主动触发按钮" />
+<input type="button" name="b7" id="id_b7" value="获取下拉列表" onclick="on_sl();"/>
+</body>
+<script type="text/javascript">
+    function get_type(){
+        var types = document.getElementById("id_name");
+        var o = types.attributes;
+        for(var i=0; i<o.length;i++){
+            console.log(o[i].name + o[i].value);
+        }
+    }
+    function on_create(){
+        var id = document.getElementById("div1");
+        var p1 = document.createElement("p");
+        p1.innerText = "动态创建文本段落";
+        id.appendChild(p1);
+    }
+    function on_add(){
+        var id = document.getElementById("div2");
+        var p2 = document.createElement("p");
+        p2.innerText = "动态添加文本段落";
+        id.appendChild(p2);
+    }
+    function on_insert(){
+        var id = document.getElementById("div3");
+        var arr = id.children;
+        var a1 = arr[0];
+        var a3 = arr[1];
+        var a2 = document.createElement("p");
+        a2.innerText = "动态插入文本段落";
+        id.insertBefore(a2,a3);
+    }
+    function on_del(){
+        var id = document.getElementById("div2");
+        var child = id.childNodes;
+        id.removeChild(child[0]);
+    }
+    function on_change(){
+        var id = document.getElementsByTagName('p');
+        id[3].innerText = "替换后的文本段落";
+    }
+    var id1 = document.getElementById("id_b6");
+    id1.onclick = function (){
+        console.log("主动触发按钮");
+        document.getElementById("id_b1").click();
+    }
+    function on_sl(){
+        var id = document.getElementById("sl").selectedIndex;
+        var options = document.getElementById("sl").options[id];
+        console.log(options.text);
+
+    }
+    window.onload = function (){
+        var arrtel = ["1","2","3","4","5","6","7","8","9","#","=","-"];
+        var arrbtn = document.getElementsByTagName("button");
+        var tel = document.getElementById("id_name6");
+        for (var i=0;i<arrbtn.length-1;i++){
+            arrbtn[i].index = i;
+            arrbtn[i].onclick = function (){
+                tel.value += arrtel[this.index];
+            }
+        }
+    }
+</script>
+</html>
+

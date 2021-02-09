@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取父窗口</title>
+</head>
+<body>
+<div>
+    <label>传出数据</label><input type="text" id="text1" value="open">
+    <input type="button" value="打开子窗口" onclick="openNewChild('child.html');">
+    <span id="span1"></span>
+</div>
+<script>
+    function openNewChild(url){
+        var cururl = window.location.href.split('?')[0];
+        document.getElementById("span1").innerHTML += "CURUAL:"+cururl+"<br/>";
+        var suburl = window.open(url);
+        var childurl = suburl.opener.location.href.split('?')[0];
+        document.getElementById("span1").innerHTML += "CHILDURL:"+childurl;
+    }
+</script>
+</body>
+</html>

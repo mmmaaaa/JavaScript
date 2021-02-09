@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片居中</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<style type="text/css">
+    body {
+        text-align: center;
+    }
+
+    div#center {
+        width: 320px;
+        height: 192px;
+        border: 1px solid black;
+        margin: 10px auto;
+        padding: 10px;
+    }
+</style>
+<body>
+    <div id="center">
+        <img src="images/js-center.jpg" id="id_center">
+    </div>
+<script type="text/javascript">
+    window.onload = function (){
+        var e = document.getElementById("id_center");
+        var width = e.width;
+        var height = e.height;
+        var d = document.getElementById("center");
+        var widthoffset = d.offsetWidth;
+        var heightoffset = d.offsetHeight;
+        e.style.margin = '0,auto';
+        var padding = (heightoffset - height)/2;
+        d.style.paddingTop = (32 + padding)+'px';
+    }
+</script>
+</body>
+</html>

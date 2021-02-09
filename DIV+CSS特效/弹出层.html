@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- 添加文档头部内容 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>弹出层</title>
+</head>
+<style type="text/css">
+    body {
+        text-align: center;
+    }
+
+    div#id-div-popup {
+        display: none;
+        width: 300px;
+        height: 100px;
+        border: 1px solid #ccc;
+        text-align: center;
+        font: normal 14px/1.2em "Microsoft Yahei", arial, sans-serif;
+    }
+    div#id-div-popup p.p-close {
+        text-align: right;
+    }
+</style>
+<body>
+<!-- 添加文档主体内容 -->
+<header>
+    <nav>JavaScript DIV+CSS特效 - 弹出层</nav>
+</header>
+<hr>
+<!-- 添加文档主体内容 -->
+<div id="id-div-popup">
+    <p class="p-close"><input type="button" id='id-input-popupClose' value='close'/></p>
+    <p>这是一个弹出层!</p>
+</div>
+<input type="button" id='id-input-popupOpen' value='弹出'/>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        function setCss(_this, cssOption) { // TODO: 设置元素样式
+            // TODO: 判断节点类型
+            if (!_this || _this.nodeType === 3 || _this.nodeType === 8 || !_this.style) {
+                return;
+            }
+            for (var cs in cssOption) {
+                _this.style[cs] = cssOption[cs];
+            }
+        }
+
+        function setPopup(e, openPop, closePop) {
+            setCss(e, { // TODO: 初始化样式
+                "position": "absolute",
+                "zIndex": 100,
+                "backgroundColor": "#eee"
+            });
+            openPop.onclick = function () {
+                e.style.display = "block";
+                setCss(e, {
+                    "top": "50%",
+                    "left": "50%",
+                    "marginLeft": -e.offsetWidth / 2 + "px"
+                    // TODO: 修改弹出层的位置，将其定位于屏幕的可见区域中间位置
+                    //"top": ((document.body.scrollTop || document.documentElement.scrollTop) + window.screen.availHeight / 2 - e.offsetHeight) + "px"
+                });
+            };
+            closePop.onclick = function () {
+                e.style.display = "none";
+            };
+        }
+
+        /**
+         * 弹出层
+         */
+        setPopup(
+            document.getElementById("id-div-popup"),
+            document.getElementById("id-input-popupOpen"),
+            document.getElementById("id-input-popupClose")
+        );
+    };
+</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取浏览器信息</title>
+</head>
+<body>
+<div id="id-div">
+    <span id="id-span"></span>
+</div>
+</body>
+<script>
+    window.onload = function (){
+        let info = `浏览器主要信息:<br>`;
+        info += `浏览器代码名称:${navigator.appCodeName}<br>`;
+        info += `浏览器类型:${navigator.appName}<br>`;
+        info += `浏览器内核:${navigator.userAgent}<br>`;
+        info += `浏览器版本:${navigator.appVersion}<br>`;
+        info += `浏览器语言:${navigator.language}<br>`;
+        info += `浏览器全部信息:<br>`;
+        for (let n in navigator){
+            if (typeof  navigator[n] == "string")
+                info += `${n}:${navigator[n]}<br>`;
+        }
+        document.getElementById("id-span").innerHTML = info;
+    }
+</script>
+</html>

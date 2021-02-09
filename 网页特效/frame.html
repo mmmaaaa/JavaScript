@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>防止网页被frame</title>
+</head>
+<body>
+<div>
+</div>
+</body>
+<script>
+    window.onload = function (){
+        if (top.location != self.location){
+            alert("网页被frame了");
+            top.location = self.location;
+        }else
+            console.log("网页未被frame");
+    }
+</script>
+</html>

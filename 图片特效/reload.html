@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>重新加载验证码图片</title>
+</head>
+<body>
+<input type="button" value="重新加载验证码图片" id="bt1" onclick="reload();">
+<img src="images/verifycode.01.jpg" id="id-img" alt="图片未加载"
+     lazy_src_1="images/verifycode.01.jpg"
+     lazy_src_2="images/verifycode.02.jpg"
+     lazy_src_3="images/verifycode.03.jpg"/>
+<script type="text/javascript">
+    var timer = null;
+    window.onload = function (){
+        var e = document.getElementById("bt1");
+        e.disabled = true;
+        e.value = "剩余10秒"
+        window.clearInterval(timer);
+        var times = 10;
+        timer = window.setInterval(function (){
+            if (times == 0){
+                e.disabled = false;
+                e.value = "动态加载验证码";
+                window.clearInterval(timer);
+            }else {
+                times--;
+                e.value = "剩余"+times+"秒";
+            }
+        },1000)
+    }
+    index = 1;
+    function reload(){
+        var img = document.getElementById("id-img");
+        index++;
+        if (index>3){
+            index = 1;
+        }
+            img.src = img.attributes['lazy_src_'+ index.toString()].value;
+
+    }
+</script>
+</body>
+</html>

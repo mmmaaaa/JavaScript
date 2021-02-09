@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>判断字符个数</title>
+</head>
+<body>
+<div>
+    请输入:<input type="text" id="id_count" onblur="on_count(this.id);">
+    输出:<input type="text" id="id_shuchu" readonly>
+</div>
+<script>
+    function on_count(thisid){
+        var vResult = document.getElementById("id_shuchu");
+        //获得文本框的DOM
+        var vInput = document.getElementById(thisid);
+        var vText = vInput.value;
+        var sumTotal = 0, sumEn = 0, sumCh = 0;
+        sumTotal = vText.length;
+        for (var i = 0; i < sumTotal; i++) {
+            var c = vText.charAt(i);
+            if (isChineseChar(c)) {
+                sumCh++;
+            } else {
+                sumEn++;
+            }
+        }
+        console.log(sumCh,sumEn)
+        vResult.value = "共计" + sumTotal + "个字符,汉字字符为" + sumCh + "个,非汉字字符为" + sumEn + "个.";
+    }
+    function isChineseChar(c) {
+        var reg = /[\u4E00-\u9FA5]/;    // TODO: 定义正则表达式
+        return reg.test(c);
+    }
+</script>
+</body>
+</html>

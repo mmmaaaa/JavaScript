@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>button特效</title>
+</head>
+<body>
+<p>删除内容</p>
+<button id="change">初始状态</button><br>
+<div>
+<button id="time" style="width: 150px; height: 32px">定时器</button>
+</div>
+<div>
+    <p>
+        <button id="miao" disabled>计时器按钮（0)秒</button>
+    </p>
+    <p>
+        <button id="start" onclick="on_start();">开始计时</button>
+        <button id="pause" onclick="on_pause();">暂停计时</button>
+        <button id="restore" onclick="on_restore();">回复倒计时</button>
+        <button id="stop" onclick="on_stop();">停止倒计时</button>
+    </p>
+</div>
+<div>
+    <p>
+        <textarea readonly=true id="id_text" onscroll="on_scroll();">
+            阅读完协议才能注册
+            阅读完协议才能注册
+            阅读完协议才能注册
+            阅读完协议才能注册阅读完协议才能注册阅读完协议才能注册阅读完协议才能注册
+            阅读完协议才能注册<br>
+            阅读完协议才能注册阅读完协议才能注册阅读完协议才能注册<br>
+
+        </textarea>
+        <button id="b1" disabled>用户注册</button>
+    </p>
+</div>
+<div>
+    <button>red</button>
+    <button>blue</button>
+    <button>yellow</button>
+    <button id="dowm" onclick="on_down();">按钮失效</button>
+    <button id="active">按钮激活</button>
+    <button id="del" onclick="dele();">删除</button>
+    <button id="zc" onclick="on_zc();">正常状态</button>
+    <button id="yx" onclick="on_yx();">运行状态</button>
+    <button id="tz" onclick="on_tz();">停止状态</button>
+    <button id="jy" onclick="on_jy();">禁用状态</button>
+</div>
+</body>
+<script type="text/javascript">
+    //改变按钮背景颜色
+    var arr = ["red","blue","yellow"];
+    var type = document.getElementsByTagName("button");
+    for (var i=0; i<type.length;i++){
+        type[i].style.backgroundColor = arr[i];
+    }
+    //屏蔽enter按钮自动提交功能
+    window.onload = function (){
+        document.formNoEnter.onkeypress = function (ev){
+            var ev = window.event || ev;
+            if (ev.keyCode == 13 || ev.which == 13){
+                console.log("屏蔽enter按钮自动提交功能");
+                return false;
+            }
+        }
+    }
+    //按钮点击后失效和重新激活
+    // document.getElementById("dowm").onclick = function (e){
+    //     e.target.disabled = true;
+    //     }
+    // document.getElementById("active").onclick = function (e){
+    //     document.getElementById("dowm").disabled = false;
+    // }
+    function on_down(){
+        document.getElementById("dowm").disabled = true;
+    }
+    //删除内容功能
+    function dele(){
+        if (confirm("确定删除？")){
+            document.getElementsByTagName("p")[0].innerText = "";
+        }
+    }
+    //改变按钮状态
+    function on_zc(){
+        var e = document.getElementById("change");
+        e.disabled = false;
+        e.innerText = "正常状态";
+    }
+    function  on_yx(){
+        var e = document.getElementById("change");
+        e.disabled = false;
+        e.innerText = "运行状态";
+        e.style.color = "#fff";
+        e.style.fontWeight = "bold";
+        e.style.backgroundColor = "#666";
+    }
+    function on_tz(){
+        var e = document.getElementById("change");
+        e.disabled = false;
+        e.innerText = "停止状态";
+        e.style.color = "#888";
+        e.style.fontWeight = "bold";
+        w.style.backgroundColor = "#ccc";
+    }
+    function on_jy(){
+        var e = document.getElementById("change");
+        e.disabled = true;
+        e.innerText = "禁用状态";
+        e.style.color = "#ccc";
+        e.style.fontWeight = "bold";
+        e.style.backgroundColor = "#eee";
+    }
+    //按钮倒计时功能
+    var timer = null;
+    window.onload = function(){
+        var e = document.getElementById("time");
+        e.disabled = true;
+        e.innerText = "注册，倒计时10秒";
+        window.clearInterval(timer);
+        var times = 10;
+        timer = window.setInterval(function (){
+            if (times == 0){
+                e.disabled = false;
+                e.innerText = "注册";
+                window.clearInterval(timer);
+            }else {
+                times--;
+                e.innerText = "注册剩余" + times + "秒";
+            }
+        },1000);
+    }
+    var mytimer = null;
+    var mysec = 0;
+    function init(){
+        var e = document.getElementById("miao");
+        e.innerText = "计算机按钮(0)秒";
+        document.getElementById("pause").disabled = true;
+        document.getElementById("restore").disabled = true;
+        document.getElementById("stop").disabled = true;
+    }
+    function on_start(){
+        var e = document.getElementById("miao");
+        document.getElementById("start").disabled = true;
+        document.getElementById("pause").disabled = false;
+        document.getElementById("stop").disabled = false;
+        window.clearInterval(mytimer);
+        mysec = 0;
+        mytimer = window.setInterval(function (){
+            mysec++;
+            e.innerText = "计时器按钮"+mysec/1000+"秒";
+        },1);
+    }
+    function on_pause(){
+        var e = document.getElementById("miao");
+        document.getElementById("pause").disabled = true;
+        document.getElementById("restore").disabled = false;
+        window.clearInterval(mytimer);
+    }
+    function on_restore(){
+        var e = document.getElementById("miao");
+        document.getElementById("pause").disabled = false;
+        document.getElementById("restore").disabled = true;
+        mytimer = window.setInterval(function (){
+            mysec++;
+            e.innerText = "计时器按钮"+mysec/1000+"秒";
+        },1)
+    }
+    function on_stop(){
+        var e = document.getElementById("miao");
+        document.getElementById("start").disabled = false;
+        document.getElementById("pause").disabled = true;
+        document.getElementById("restore").disabled = true;
+        document.getElementById("stop").disabled = true;
+        mysec = 0;
+        window.clearInterval(mytimer);
+        e.innerText = "计时器按钮(0)秒";
+    }
+    function on_scroll(){
+        textareaReg = document.getElementById("id_text");
+       if ((textareaReg.scrollTop + textareaReg.clientHeight) >= textareaReg.scrollHeight){
+           document.getElementById("b1").disabled = false;
+       }
+    }
+</script>
+</html>

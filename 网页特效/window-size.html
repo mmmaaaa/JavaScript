@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>指定打开窗口大小</title>
+</head>
+<body>
+<div>
+    <input type="text" id="height" placeholder="请输入高">
+    <input type="text" id="width" placeholder="请输入宽">
+    <input type="button" id="bt1" value="打开新窗口" onclick="openNewWindow('test.html');">
+</div>
+<script>
+    function openNewWindow(url){
+        let e = document.getElementById("height").value;
+        let i = document.getElementById("width").value;
+        if (e == 0){
+            e = 100;
+        }
+        if (i == 0){
+            i = 100;
+        }
+        window.open(url,'','width=' +i+ ',height=' +e);
+    }
+</script>
+</body>
+</html>

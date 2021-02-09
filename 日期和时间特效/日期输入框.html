@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日期输入框</title>
+</head>
+<body>
+<div>
+    日期输入框： <input type="text" id="id-input" onfocus="initDate(this.id);">
+</div>
+<div id="id-div">
+    <p>
+        <select id="y"></select>年
+        <select id="m" onchange="onchange1()"></select>月
+    </p>
+    <table id="tb1" border="1"></table>
+    <span id="sp1"></span>
+</div>
+<script>
+    window.onload = function (){
+        document.getElementById("id-input").value = "";
+        onchange();
+    }
+    function onchange(){
+        let y = document.getElementById("y");
+        let m = document.getElementById("m");
+        let str = '';
+        for (let i = 2019; i <= 2020; i++) {
+            str += '<option value="' + i + '">' + i + '</option>';
+        }
+        y.innerHTML = str;
+        let str1 = '';
+        for (let j = 1; j <= 12; j++) {
+            str1 += '<option value="' + j + '">' + j + '</option>';
+        }
+        m.innerHTML = str1;
+    }
+    function initDate(thisid){
+        document.getElementById(thisid).value = "";
+        var now = new Date();
+        var yyyy = now.getFullYear();
+        var mm = now.getMonth()+1;
+        var dd = now.getDate();
+        var week = now.getDay();
+        var arrweek = ['日','一','二','三','四','五','六'];
+        var strweek = '星期';
+        for (let  i = 0;i < 7; i++){
+            if (i == week){
+                strweek += arrweek[i];
+                break;
+            }
+        }
+        var strinfo = yyyy + '年' + mm + '月' + dd + '日' + strweek;
+        document.getElementById(thisid).value = strinfo;
+        var divdate = document.getElementById('id-div');
+        var year = document.getElementById('y');
+        var month = document.getElementById('m');
+        year.value = yyyy;
+        month.value = mm;
+        divdate.style.display = 'block';
+        onchange1();
+    }
+    function onchange1(){
+        let year = document.getElementById("y").value;console.log(year)
+        year = parseInt(year);
+        let month = parseInt(document.getElementById("m").value);
+        console.log(year,month)
+        let days = 31;
+        if (isrunyear(year) && month == 2) {
+            days = 29;
+        } else if (!isrunyear(year) && month == 2) {
+            days = 28;
+        } else if (month == 4 || month == 6 || month == 9 || month == 11) {
+            days = 30;
+        }
+        let arrweek = ['日', '一', '二', '三', '四', '五', '六'];
+        let strw = '<tr>';
+        for (let w = 0; w < 7; w++) {
+            strw += '<td>星期' + arrweek[w] + '</td>';
+        }
+        strw += '</tr>';
+        console.log(strw);
+        let date = new Date(year, month - 1, 1);
+        let week = date.getDay();
+        console.log(week)
+        if (week == 7)
+            week = 0;
+        let e = 1;
+        while (true) {
+            strw += '<tr>';
+            for (let o = 0; o < 7; o++) {
+                if (e == 1 && o == week) {
+                    strw += '<td onclick="showDay(this,' + e + ',' + o + ');">1</td>';
+                    e++;
+                } else if (e > 1 && e <= days) {
+                    strw += '<td onclick="showDay(this,' + e + ',' + o + ');">' + e + '</td>';
+                    e++;
+                } else
+                    strw += '<td>&nbsp;</td>';
+            }
+            strw += '</tr>';
+            if (e > days)
+                break;
+        }
+        console.log(strw);
+        document.getElementById("tb1").innerHTML = strw;
+
+    }
+    function isrunyear(y){
+        return y%4 == 0;
+    }
+    function showDay(el,d,w){
+        console.log(el);
+        settbbgcolor(el);
+        let a = document.getElementById("y").value;
+        let b = document.getElementById("m").value;
+        let arra = ['日','一','二','三','四','五','六'];
+        let stra = '星期';
+        for (let c = 0;c<7;c++){
+            if (c == w){
+                stra += arra[c];
+                break;
+            }
+        }
+        var strinfo = `${a}年${b}月${d}日${stra}`;
+        console.log(strinfo);
+        document.getElementById("sp1").innerHTML = strinfo;
+        document.getElementById("id-input").value = strinfo;
+    }
+    function settbbgcolor(el){
+        let tds = document.getElementsByTagName("td");
+        for (let d = 0;d<tds.length;d++){
+            tds[d].style.backgroundColor="";
+        }
+        el.style.backgroundColor = "gray";
+    }
+</script>
+</body>
+</html>

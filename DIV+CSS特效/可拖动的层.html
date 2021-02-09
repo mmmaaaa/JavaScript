@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可拖动的层</title>
+</head>
+<style type="text/css">
+    body{
+        text-align: center;
+    }
+    div#id-box{
+        position: absolute;
+        left: 30%;
+        top: 30%;
+        width: 200px;
+        height: 100px;
+        z-index: 99;
+        border: 1px solid black;
+        font: normal 14px/1.2em "Microsoft YaHei",Arial,sans-serif;
+    }
+    div#id-box h3{
+        margin: 0px;
+        padding: 3px;
+        background-color: black;
+        opacity: 0.75;
+        border: 1px solid black;
+        height: 24px;
+        cursor: pointer;
+        
+    }
+</style>
+<body>
+<div id="id-box">
+    <h3 align="right" id="id-drag">
+        <span style="float:left;color: white;">标题栏（鼠标拖动）</span>
+    </h3>
+    <div id="id-msg">这是一个可拖动的层</div>
+    <div id="id-pos"></div>
+</div>
+</body>
+<script type="text/javascript">
+var isDrag = false; // TODO: 是否正在移动的标志变量
+var l = 0;          // TODO: left变量
+var t = 0;          // TODO: top变量
+var x, y;
+
+window.onload = function (ev) {
+    //获取层box的DOM
+    var boxDrag = document.getElementById('id-drag');
+    boxDrag.onmousedown = mouseDown;    // TODO: 设置mousedown事件
+    boxDrag.onmousemove = mouseMove;	// TODO: 设置mousemove事件
+    boxDrag.onmouseup = mouseUp;		// TODO: 设置mouseup事件
+    var initPos = "X pos : 200 , Y pos : 100";
+    document.getElementById('id-pos').innerText = initPos;
+};
+
+/**
+ * 定义box的鼠标按下事件
+ * @param event
+ */
+function mouseDown(event) {
+    var e = event;  // TODO: 定义事件e变量
+    x = e.clientX;	// TODO: 得到事件发生的x坐标
+    y = e.clientY;	// TODO: 得到事件发生的y坐标
+    // TODO: 得到box的左上角的坐标
+    l = document.getElementById("id-box").offsetLeft;
+    t = document.getElementById("id-box").offsetTop;
+    isDrag = true;
+}
+
+/**
+ * 定义box的鼠标移动事件
+ * @param event
+ */
+function mouseMove(event) {
+    if (isDrag) {
+        var e = event;  //得到事件变量e
+        var box = document.getElementById("id-box");
+        var newLeft = l + e.clientX - x;//计算新的left的值
+        var newTop = t + e.clientY - y;	//计算新的top的值
+        var newPos = "X pos : " + newLeft + ", Y pos : " + newTop;
+        document.getElementById('id-pos').innerText = newPos;
+        box.style.left = newLeft + "px";//设置新的left值，带上单位
+        box.style.top = newTop + "px";	//设置新的top值，带上单位
+    }
+}
+
+/**
+ * 定义box的鼠标按下释放事件
+ * @param event
+ */
+function mouseUp(event) {
+    if (isDrag) {
+        isDrag = false;
+    }
+}
+</script>
+</html>

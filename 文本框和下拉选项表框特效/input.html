@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可输入的下拉列表框</title>
+</head>
+<style type="text/css">
+    body {
+        text-align: center;
+    }
+
+    div#id-center {
+        position: relative;
+        width: 320px;
+        height: auto;
+        border: 0px solid black;
+        margin: 32px auto;
+        padding: 2px;
+    }
+
+    div#id-center span {
+        overflow: hidden;
+        margin-left: 100px;
+        width: 18px;
+    }
+
+    div#id-center select {
+        width: 128px;
+        margin-left: -100px;
+    }
+
+    div#id-center input {
+        position: absolute;
+        width: 105px;
+        height: 14px;
+        left: 98px;
+    }
+</style>
+<body>
+<div id="id-center">
+    <span>
+        <select id="sel1" onchange="sel_input(this.id)">
+            <option value="html">html</option>
+            <option value="css">css</option>
+            <option value="javascript">javascript</option>
+        </select>
+    </span>
+    <input id="id-input">
+</div>
+<script>
+    function sel_input(thisid){
+        var sel = document.getElementById(thisid);
+        var input = document.getElementById("id-input");
+        input.value = sel.options[sel.selectedIndex].innerText;
+    }
+</script>
+</body>
+</html>

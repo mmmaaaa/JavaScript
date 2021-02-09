@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>隐藏层</title>
+</head>
+<body>
+<div id="id-hidden">
+    <p>这是一个隐藏层</p>
+    <p>请用户切换"隐藏/显示效果“!</p>
+</div>
+<input type="button" id="bt-hidden" value="隐藏"/>
+<input type="button" id="bt-show" value="显示"/>
+</body>
+<script type="text/javascript">
+    window.onload = function (){
+        document.getElementById("bt-hidden").onclick = function (){
+            document.getElementById("id-hidden").style.display = "none";
+        }
+        document.getElementById("bt-show").onclick = function (){
+            document.getElementById("id-hidden").style.display = "block";
+        }
+
+    }
+</script>
+</html>

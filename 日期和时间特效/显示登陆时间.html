@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示登陆时间</title>
+</head>
+<body>
+<div>
+    <span id="sp2"></span>
+</div>
+<script>
+        let e = document.getElementById("sp2");
+        let h = 0;
+        let m = 0;
+        let s = 0;
+        window.onload = function (){
+        window.setInterval(function (){
+            s++;
+            if (s == 60){
+                s = 0;
+                m++;
+                if (m == 60){
+                    m = 0;
+                    h++;
+                }
+            }
+            e.innerText = `您已登录${h}小时${m}分钟${s}秒`;
+        },1000)
+
+        }
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>遮罩层效果</title>
+</head>
+<style type="text/css">
+    div#id-layer{
+        position: relative;
+        width: 320px;
+        height: 160px;
+        border: 1px solid gray;
+        margin: 32px auto;
+        padding: 2px;
+        font: normal 14px/1.2em "Microsoft YaHei",Arial,sans-serif;
+    }
+</style>
+<body>
+<div id="id-layer">
+    <p>测试遮罩层效果</p>
+    <p><input type="text"></p>
+    <p><input type="button" value="提交"></p>
+    <div id="id-maskLayer" style="display: none"></div>
+</div>
+<input type="button" value="显示遮罩层" id="id-show">
+<input type="button" value="取消遮罩层" id="id-cancel">
+<input type="button" value="遮罩全部页面" id="id-body">
+<div id="id-div-body" style="display: none"></div>
+</body>
+<script type="text/javascript">
+    window.onload = function (){
+        function setCss(_this,cssOption){
+            if (!_this || _this.nodeType === 3 || _this.nodeType ===8 || !_this.style){
+                return;
+            }
+            for (var cs in cssOption){
+                _this.style[cs] = cssOption[cs];
+            }
+            return _this;
+        }
+        document.getElementById("id-show").onclick = function (){
+            var divLayer = document.getElementById("id-layer"),
+                maskLayer = document.getElementById("id-maskLayer");
+            setCss(maskLayer,{
+                "position":"absolute",
+                "display":"block",
+                "left":"0px",
+                "top":"0px",
+                "zIndex":1000,
+                "backgroundColor":"#ccc",
+                "height":divLayer.scrollHeight + "px",
+                "width":divLayer.offsetWidth + "px",
+                "filter":"alpha(Opacity=60)",
+                "opacity":"0.6",
+                "-moz-opacity":"0.6",
+                "filter":"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)",
+                "-MS-filter":"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)"
+            });
+        };
+        document.getElementById("id-cancel").onclick = function (){
+            var divLayer = document.getElementById("id-layer"),
+                maskLayer = document.getElementById("id-maskLayer");
+            setCss(maskLayer,{
+                display: "none"
+            });
+        };
+        document.getElementById("id-body").onclick = function (){
+            var body = document.body.parentNode,
+                maskLayer = document.getElementById("id-div-body");
+            setCss(maskLayer,{
+                "position":"absolute",
+                "display":"block",
+                "left":"0px",
+                "top":"0px",
+                "zIndex":1000,
+                "backgroundColor":"#ccc",
+                "height":body.scrollHeight + "px",
+                "width":body.offsetWidth + "px",
+                "filter":"alpha(Opacity=60)",
+                "opacity":"0.6",
+                "-moz-opacity":"0.6",
+                "filter":"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)",
+                "-MS-filter":"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)"
+            })
+        }
+    }
+</script>
+</html>

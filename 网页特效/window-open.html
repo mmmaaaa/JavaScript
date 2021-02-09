@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打开新页面的几种方法</title>
+</head>
+<body>
+<div>
+    <a href="test.html">打开新页面</a>
+    <a href="test.html" target="_blank">打开新页面(target="_blank)</a>
+    <a onclick="window.open('test.html')">打开新页面(window.open)</a>
+    <input type="button" value="打开新页面" onclick="window.open('test.html')">
+    <input type="button" value="打开新页面" onclick="openNewHtml('test.html');">
+    <a href="javascript:openNewHtml('test.html')">打开新页面</a>
+</div>
+<script>
+    function openNewHtml(url){
+        window.open(url);
+    }
+</script>
+</body>
+</html>

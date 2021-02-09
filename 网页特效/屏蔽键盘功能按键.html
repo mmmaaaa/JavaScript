@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>屏蔽键盘功能按键</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+    window.onload = function (ev){
+        document.onkeydown = function (ev){
+            let event = ev || window.event;
+            if (event.shiftKey){
+                alert("禁止按shift键");
+                return false;
+            }else if (event.ctrlKey){
+                alert("禁止按Ctrl键");
+                return false;
+            }else if (event.altKey){
+                alert("禁止按Alt键");
+                return false;
+            }else {}
+            console.log(event.key);
+        }
+    }
+</script>
+</html>

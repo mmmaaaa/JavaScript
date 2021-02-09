@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- 添加文档头部内容 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="zh-cn"/>
+    <meta name="author" content="king">
+    <meta name="revised" content="king,01/18/2019">
+    <meta name="generator" content="WebStorm 2017.2.4">
+    <meta name="description" content="JavaScript Total Samples">
+    <meta name="keywords" content="JavaScript,ECMAScript">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>JavaScript 全程实例</title>
+</head>
+<style type="text/css">
+    body {
+        text-align: center;
+    }
+
+    div#id-div-center {
+        width: 360px;
+        height: auto;
+        border: 0px solid black;
+        margin: 32px auto;
+        padding: 2px;
+    }
+
+    div#id-div-center table tr td {
+        padding: 4px;
+    }
+
+    div#id-div-center input[type="text"] {
+        width: 64px;
+    }
+</style>
+<body>
+<!-- 添加文档主体内容 -->
+<header>
+    <nav>动态添加下拉列表框选项</nav>
+</header>
+<hr>
+<!-- 添加文档主体内容 -->
+<div id="id-div-center">
+    <table>
+        <tr>
+            <th>设置颜色:&nbsp;&nbsp;</th>
+            <td>
+                <!-- 定义下拉列表框 -->
+                <select name="selSetColor" id="idSelSetColor">
+                    <option>请选择...</option>
+                    <option value="red">Red</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="green">Green</option>
+                </select>&nbsp;&nbsp;
+            </td>
+            <th>添加颜色:&nbsp;&nbsp;</th>
+            <td><input type="button" id="id-add-color" value="添加颜色" onclick="addColor()"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>value:&nbsp;&nbsp;</td>
+            <td><input type="text" id="id-sel-val" value=""/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>text:&nbsp;&nbsp;</td>
+            <td><input type="text" id="id-sel-text" value=""/></td>
+        </tr>
+    </table>
+</div>
+</body>
+<script type="text/javascript">
+    /**
+     * add option color
+     * @param thisid
+     */
+    function addColor() {
+        var idSel = document.getElementById('idSelSetColor');
+        var idSelVal = document.getElementById('id-sel-val');
+        var idSelText = document.getElementById('id-sel-text');
+        var val = idSelVal.value;
+        var text = idSelText.value;
+        idSel.options.add(new Option(val, text));
+    }
+</script>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>脚本不出错</title>
+</head>
+<body>
+<div>
+    <input type="button" id="id-input" value="错误捕获" onclick="testErr();"/>
+</div>
+<script>
+    window.onload = function (ev){
+        window.onerror = function (msg,url,line){
+            console.log(msg,url,line);
+            return true;
+        }
+    }
+    function testErr(){
+        aaalert("cuowu");
+    }
+</script>
+</body>
+</html>

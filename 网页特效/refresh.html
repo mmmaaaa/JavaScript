@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>刷新页面</title>
+</head>
+<body oncopy="alert('禁止复制网页内容!');return false;">
+<div>
+    <p>12112121</p>
+    <input type="button" value="手动刷新页面" onclick="handFresh();">
+    <input type="button" value="自动刷新页面" onclick="autoFresh();">
+</div>
+<script>
+    function handFresh(){
+        window.location.reload();
+        let date = new Date();
+        let result = "手动刷新的时间为"+date.toLocaleString();
+        console.log(result);
+    }
+    function autoFresh(){
+        let timer = null;
+        timer = self.setTimeout(function (){
+            window.location.reload();
+            let date = new Date();
+            let result = "自动刷新时间为"+date.toLocaleString();
+            console.log(result);
+            clearTimeout(timer);
+        },2000)
+    }
+    //屏蔽鼠标右键
+    // document.onmousedown = function (e){
+    //     if (e.button == 2){
+    //         alert('禁用鼠标右键');
+    //     }
+    // }
+    //屏蔽上下文菜单
+    // document.oncontextmenu = function (e){
+    //     e.returnValue = false;
+    // }
+    //屏蔽选择操作
+    document.onselectstart = function (e){
+        e.returnValue = false;
+    }
+</script>
+</body>
+</html>
